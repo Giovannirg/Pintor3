@@ -1,0 +1,531 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Pintor3</class>
+ <widget class="QMainWindow" name="Pintor3">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1007</width>
+    <height>751</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Pintor3</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QGroupBox" name="groupBox">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>0</y>
+      <width>241</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+    <widget class="QPushButton" name="exitButton">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>20</y>
+       <width>62</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Closes the App</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="Resources.qrc">
+       <normaloff>:/iconos-1/iconos-02.svg</normaloff>:/iconos-1/iconos-02.svg</iconset>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="openButton">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>20</y>
+       <width>62</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Opens an Image</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="Resources.qrc">
+       <normaloff>:/iconos-1/iconos-03.svg</normaloff>:/iconos-1/iconos-03.svg</iconset>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="saveButton">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>20</y>
+       <width>62</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Saves File</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="Resources.qrc">
+       <normaloff>:/iconos-1/iconos-04.svg</normaloff>:/iconos-1/iconos-04.svg</iconset>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="SaveAsButton">
+     <property name="geometry">
+      <rect>
+       <x>170</x>
+       <y>20</y>
+       <width>62</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Save As</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="Resources.qrc">
+       <normaloff>:/iconos-1/iconos-05.svg</normaloff>:/iconos-1/iconos-05.svg</iconset>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_2">
+    <property name="geometry">
+     <rect>
+      <x>430</x>
+      <y>0</y>
+      <width>281</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+    <widget class="QPushButton" name="ZoomInButton">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>20</y>
+       <width>62</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Zoom In</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="Resources.qrc">
+       <normaloff>:/iconos-1/iconos-08.svg</normaloff>:/iconos-1/iconos-08.svg</iconset>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="ZoomOutButton">
+     <property name="geometry">
+      <rect>
+       <x>50</x>
+       <y>20</y>
+       <width>62</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Zoom Out</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="Resources.qrc">
+       <normaloff>:/iconos-1/iconos-09.svg</normaloff>:/iconos-1/iconos-09.svg</iconset>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="ActualSizeButton">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>20</y>
+       <width>62</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Actual Size</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="Resources.qrc">
+       <normaloff>:/iconos-1/iconoslupa-09.svg</normaloff>:/iconos-1/iconoslupa-09.svg</iconset>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="Fit2WindowButton">
+     <property name="geometry">
+      <rect>
+       <x>150</x>
+       <y>20</y>
+       <width>62</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Fit to Window</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="Resources.qrc">
+       <normaloff>:/iconos-1/iconos-10.svg</normaloff>:/iconos-1/iconos-10.svg</iconset>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="ColorsButton">
+     <property name="geometry">
+      <rect>
+       <x>210</x>
+       <y>20</y>
+       <width>62</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Fit to Window</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="Resources.qrc">
+       <normaloff>:/iconos-1/iconos adi-02.svg</normaloff>:/iconos-1/iconos adi-02.svg</iconset>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_3">
+    <property name="geometry">
+     <rect>
+      <x>250</x>
+      <y>0</y>
+      <width>181</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+    <widget class="QPushButton" name="copyButton">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>20</y>
+       <width>62</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Copy to Clip Board</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="Resources.qrc">
+       <normaloff>:/iconos-1/iconos-06.svg</normaloff>:/iconos-1/iconos-06.svg</iconset>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pasteButton">
+     <property name="geometry">
+      <rect>
+       <x>60</x>
+       <y>20</y>
+       <width>62</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Paste to Clip Board</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="Resources.qrc">
+       <normaloff>:/iconos-1/iconos-07.svg</normaloff>:/iconos-1/iconos-07.svg</iconset>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="cutButton">
+     <property name="geometry">
+      <rect>
+       <x>120</x>
+       <y>20</y>
+       <width>62</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>Cut Selection</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="Resources.qrc">
+       <normaloff>:/iconos-1/iconos adi_Mesa de trabajo 1.svg</normaloff>:/iconos-1/iconos adi_Mesa de trabajo 1.svg</iconset>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_4">
+    <property name="geometry">
+     <rect>
+      <x>710</x>
+      <y>0</y>
+      <width>111</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+    <widget class="QPushButton" name="AboutButton">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>62</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>About Pintor</string>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset resource="Resources.qrc">
+       <normaloff>:/iconos-1/iconos-11.svg</normaloff>:/iconos-1/iconos-11.svg</iconset>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="AboutQtButton">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>99</width>
+       <height>32</height>
+      </rect>
+     </property>
+     <property name="toolTip">
+      <string>About QT</string>
+     </property>
+     <property name="text">
+      <string>About QT</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QScrollArea" name="scrollArea">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>60</y>
+      <width>981</width>
+      <height>611</height>
+     </rect>
+    </property>
+    <property name="widgetResizable">
+     <bool>true</bool>
+    </property>
+    <widget class="QWidget" name="scrollAreaWidgetContents">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>979</width>
+       <height>609</height>
+      </rect>
+     </property>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>0</y>
+        <width>811</width>
+        <height>471</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1007</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_File">
+    <property name="title">
+     <string>&amp;File</string>
+    </property>
+    <addaction name="action_File"/>
+    <addaction name="action_Save"/>
+    <addaction name="action_Save_As"/>
+    <addaction name="separator"/>
+    <addaction name="action_exit"/>
+   </widget>
+   <widget class="QMenu" name="menu_Edit">
+    <property name="title">
+     <string>&amp;Edit</string>
+    </property>
+    <addaction name="action_Copy"/>
+    <addaction name="action_Paste"/>
+    <addaction name="action_Cut"/>
+   </widget>
+   <widget class="QMenu" name="menu_View">
+    <property name="title">
+     <string>&amp;View</string>
+    </property>
+    <addaction name="action_Zoom_In"/>
+    <addaction name="action_Zoom_Out"/>
+    <addaction name="action_Actual_Size"/>
+    <addaction name="action_Fit_to_Window"/>
+   </widget>
+   <widget class="QMenu" name="menu_Help">
+    <property name="title">
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="action_About_Pintor"/>
+    <addaction name="action_About_Qt"/>
+   </widget>
+   <addaction name="menu_File"/>
+   <addaction name="menu_Edit"/>
+   <addaction name="menu_View"/>
+   <addaction name="menu_Help"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="action_File">
+   <property name="text">
+    <string>&amp;Open</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="action_Save">
+   <property name="text">
+    <string>&amp;Save</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="action_Save_As">
+   <property name="text">
+    <string>&amp;Save As</string>
+   </property>
+  </action>
+  <action name="action_exit">
+   <property name="text">
+    <string>&amp;Exit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="action_Copy">
+   <property name="text">
+    <string>&amp;Copy</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="action_Paste">
+   <property name="text">
+    <string>&amp;Paste</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+V</string>
+   </property>
+  </action>
+  <action name="action_Cut">
+   <property name="text">
+    <string>&amp;Cut</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+X</string>
+   </property>
+  </action>
+  <action name="action_Zoom_In">
+   <property name="text">
+    <string>&amp;Zoom In</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl++</string>
+   </property>
+  </action>
+  <action name="action_Zoom_Out">
+   <property name="text">
+    <string>&amp;Zoom Out</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+-</string>
+   </property>
+  </action>
+  <action name="action_Actual_Size">
+   <property name="text">
+    <string>&amp;Actual Size</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+0</string>
+   </property>
+  </action>
+  <action name="action_Fit_to_Window">
+   <property name="text">
+    <string>&amp;Fit to Window</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+9</string>
+   </property>
+  </action>
+  <action name="action_About_Pintor">
+   <property name="text">
+    <string>&amp;About Pintor</string>
+   </property>
+  </action>
+  <action name="action_About_Qt">
+   <property name="text">
+    <string>&amp;About Qt</string>
+   </property>
+  </action>
+ </widget>
+ <resources>
+  <include location="Resources.qrc"/>
+ </resources>
+ <connections/>
+</ui>

@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/">
+        <file>iconos-1/iconos-02.svg</file>
+        <file>iconos-1/iconos-03.svg</file>
+        <file>iconos-1/iconos-04.svg</file>
+        <file>iconos-1/iconos-05.svg</file>
+        <file>iconos-1/iconos-06.svg</file>
+        <file>iconos-1/iconos-07.svg</file>
+        <file>iconos-1/iconos-08.svg</file>
+        <file>iconos-1/iconos-09.svg</file>
+        <file>iconos-1/iconos-10.svg</file>
+        <file>iconos-1/iconos-11.svg</file>
+        <file>iconos-1/iconos adi_Mesa de trabajo 1.svg</file>
+        <file>iconos-1/iconos adi-02.svg</file>
+        <file>iconos-1/brocha-02.svg</file>
+        <file>iconos-1/iconoslupa-09.svg</file>
+    </qresource>
+</RCC>
