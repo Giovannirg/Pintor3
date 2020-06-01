@@ -66,6 +66,8 @@ bool Pintor3::loadFile(const QString &fileName)
 
     setWindowFilePath(fileName);
 
+    setFileName(fileName);
+
     const QString message = tr("Opened \"%1\", %2x%3, Depth: %4")
         .arg(QDir::toNativeSeparators(fileName)).arg(image.width()).arg(image.height()).arg(image.depth());
     statusBar()->showMessage(message);
@@ -73,6 +75,19 @@ bool Pintor3::loadFile(const QString &fileName)
 }
 //[/1]
 
+void Pintor3::setFileName(const QString &fileName)
+{
+
+    imageName = fileName;
+
+    return;
+}
+
+QString Pintor3::getFileName()
+{
+
+    return imageName;
+}
 
 //[2] set an Image inside the App canvas
 void Pintor3::setImage(const QImage &newImage)
@@ -94,7 +109,6 @@ void Pintor3::setImage(const QImage &newImage)
 }
 //[/2]
 
-//[3] saves File
 bool Pintor3::saveFile(const QString &fileName)
 {
     QImageWriter writer(fileName);
@@ -109,37 +123,6 @@ bool Pintor3::saveFile(const QString &fileName)
     statusBar()->showMessage(message);
     return true;
 }
-//[/3]
-
-//[4] Initializes the supported image types
-static void initializeImageFileDialog(QFileDialog &dialog, QFileDialog::AcceptMode acceptMode)
-{
-    static bool firstDialog = true;
-
-    if (firstDialog) {
-        firstDialog = false;
-        const QStringList picturesLocations = QStandardPaths::standardLocations(QStandardPaths::PicturesLocation);
-        dialog.setDirectory(picturesLocations.isEmpty() ? QDir::currentPath() : picturesLocations.last());
-    }
-
-    QStringList mimeTypeFilters;
-    const QByteArrayList supportedMimeTypes = acceptMode == QFileDialog::AcceptOpen
-        ? QImageReader::supportedMimeTypes() : QImageWriter::supportedMimeTypes();
-    for (const QByteArray &mimeTypeName : supportedMimeTypes)
-        mimeTypeFilters.append(mimeTypeName);
-    mimeTypeFilters.sort();
-    dialog.setMimeTypeFilters(mimeTypeFilters);
-    dialog.selectMimeTypeFilter("image/jpeg");
-    if (acceptMode == QFileDialog::AcceptSave)
-        dialog.setDefaultSuffix("jpg");
-}
-//[/4]
-
-
-//[5] Opens an image file
-
-//[/5]
-
 //[6] Saves an image file
 void Pintor3::saveAs()
 {
@@ -275,7 +258,114 @@ void Pintor3::about()
 }
 // [15]
 
-//[16] Menu Actions?? necessary or to control from the UI
+
+void Pintor3::scaleImage(double factor)
+{
+    Q_ASSERT(ui->label->pixmap());
+    scaleFactor *= factor;
+    ui->label->resize(scaleFactor * ui->label->pixmap()->size());
+
+    adjustScrollBar(scrollArea->horizontalScrollBar(), factor);
+    adjustScrollBar(scrollArea->verticalScrollBar(), factor);
+
+  //  zoomInAct->setEnabled(scaleFactor < 3.0);
+  //  zoomOutAct->setEnabled(scaleFactor > 0.333);
+}
+
+void Pintor3::adjustScrollBar(QScrollBar *scrollBar, double factor)
+{
+    scrollBar->setValue(int(factor * scrollBar->value()
+                            + ((factor - 1) * scrollBar->pageStep()/2)));
+}
+
+
+void Pintor3::action_exit()
+{
+    QApplication::quit();
+}
+
+void Pintor3::on_action_exit_triggered()
+{
+    QApplication::quit();
+}
+
+void Pintor3::on_action_Open_triggered()
+{
+    QFileDialog dialog(this, tr("Open File"));
+    initializeImageFileDialog(dialog, QFileDialog::AcceptOpen);
+
+    while (dialog.exec() == QDialog::Accepted && !loadFile(dialog.selectedFiles().first())) {}
+}
+
+void Pintor3::on_action_Save_triggered()
+{
+    QString fileName = getFileName();
+
+    QImageWriter writer(fileName);
+
+    if (!writer.write(image)) {
+        QMessageBox::information(this, QGuiApplication::applicationDisplayName(),
+                                 tr("Cannot write %1: %2")
+                                 .arg(QDir::toNativeSeparators(fileName)), writer.errorString());
+        return;
+    }
+    const QString message = tr("Wrote \"%1\"").arg(QDir::toNativeSeparators(fileName));
+    statusBar()->showMessage(message);
+    QMessageBox::information(this, QGuiApplication::applicationDisplayName(), message);
+
+    return;
+
+
+}
+
+void Pintor3::on_action_Save_As_triggered()
+{
+
+}
+
+void Pintor3::on_action_Copy_triggered()
+{
+
+}
+
+void Pintor3::on_action_Paste_triggered()
+{
+
+}
+
+void Pintor3::on_action_Cut_triggered()
+{
+
+}
+
+void Pintor3::on_action_Zoom_In_triggered()
+{
+
+}
+
+void Pintor3::on_action_Zoom_Out_triggered()
+{
+
+}
+
+void Pintor3::on_action_Actual_Size_triggered()
+{
+
+}
+
+void Pintor3::on_action_About_Pintor_triggered()
+{
+
+}
+
+void Pintor3::on_action_About_Qt_triggered()
+{
+
+}
+
+
+
+//[16] Menu Actions?? necessary or to control from the UI -> Resevuoir
 /* void Pintor3::createActions()
 
 {
@@ -344,102 +434,29 @@ void Pintor3::about()
     normalSizeAct->setEnabled(!fitToWindowAct->isChecked());
 }
 //! [17]
+
+
+//[4] Initializes the supported image types
+static void initializeImageFileDialog(QFileDialog &dialog, QFileDialog::AcceptMode acceptMode)
+{
+    static bool firstDialog = true;
+
+    if (firstDialog) {
+        firstDialog = false;
+        const QStringList picturesLocations = QStandardPaths::standardLocations(QStandardPaths::PicturesLocation);
+        dialog.setDirectory(picturesLocations.isEmpty() ? QDir::currentPath() : picturesLocations.last());
+    }
+
+    QStringList mimeTypeFilters;
+    const QByteArrayList supportedMimeTypes = acceptMode == QFileDialog::AcceptOpen
+        ? QImageReader::supportedMimeTypes() : QImageWriter::supportedMimeTypes();
+    for (const QByteArray &mimeTypeName : supportedMimeTypes)
+        mimeTypeFilters.append(mimeTypeName);
+    mimeTypeFilters.sort();
+    dialog.setMimeTypeFilters(mimeTypeFilters);
+    dialog.selectMimeTypeFilter("image/jpeg");
+    if (acceptMode == QFileDialog::AcceptSave)
+        dialog.setDefaultSuffix("jpg");
+}
+//[/4]
 */
-//! [23]
-void Pintor3::scaleImage(double factor)
-//! [23] //! [24]
-{
-    Q_ASSERT(ui->label->pixmap());
-    scaleFactor *= factor;
-    ui->label->resize(scaleFactor * ui->label->pixmap()->size());
-
-    adjustScrollBar(scrollArea->horizontalScrollBar(), factor);
-    adjustScrollBar(scrollArea->verticalScrollBar(), factor);
-
-  //  zoomInAct->setEnabled(scaleFactor < 3.0);
-  //  zoomOutAct->setEnabled(scaleFactor > 0.333);
-}
-//! [24]
-
-//! [25]
-void Pintor3::adjustScrollBar(QScrollBar *scrollBar, double factor)
-//! [25] //! [26]
-{
-    scrollBar->setValue(int(factor * scrollBar->value()
-                            + ((factor - 1) * scrollBar->pageStep()/2)));
-}
-//! [26]
-
-void Pintor3::action_exit()
-{
-    QApplication::quit();
-}
-
-
-
-
-
-void Pintor3::on_action_exit_triggered()
-{
-    QApplication::quit();
-}
-
-
-
-void Pintor3::on_action_Save_triggered()
-{
-
-}
-
-void Pintor3::on_action_Save_As_triggered()
-{
-
-}
-
-void Pintor3::on_action_Copy_triggered()
-{
-
-}
-
-void Pintor3::on_action_Paste_triggered()
-{
-
-}
-
-void Pintor3::on_action_Cut_triggered()
-{
-
-}
-
-void Pintor3::on_action_Zoom_In_triggered()
-{
-
-}
-
-void Pintor3::on_action_Zoom_Out_triggered()
-{
-
-}
-
-void Pintor3::on_action_Actual_Size_triggered()
-{
-
-}
-
-void Pintor3::on_action_About_Pintor_triggered()
-{
-
-}
-
-void Pintor3::on_action_About_Qt_triggered()
-{
-
-}
-
-void Pintor3::on_action_Open_triggered()
-{
-    QFileDialog dialog(this, tr("Open File"));
-    initializeImageFileDialog(dialog, QFileDialog::AcceptOpen);
-
-    while (dialog.exec() == QDialog::Accepted && !loadFile(dialog.selectedFiles().first())) {}
-}

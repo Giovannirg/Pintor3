@@ -85,8 +85,13 @@ private:
     void scaleImage(double factor);
     void adjustScrollBar(QScrollBar *scrollBar, double factor);
 
+    void setFileName(const QString &fileName);
+
+
+    QString getFileName();
 
     QImage image;
+    QString imageName;
     QLabel *label; //Related to the TextLabel/mageLabel
     QScrollArea *scrollArea;
     double scaleFactor = 1.0;
