@@ -88,16 +88,16 @@ void Pintor3::setImage(const QImage &newImage)
     if (image.colorSpace().isValid())
         image.convertToColorSpace(QColorSpace::SRgb);
     ui->label->setPixmap(QPixmap::fromImage(image));
-//! [4]
+
     scaleFactor = 1.0;
 
     scrollArea->setVisible(true);
-    printAct->setEnabled(true);
-    fitToWindowAct->setEnabled(true);
-    updateActions();
+    //printAct->setEnabled(true);
+   // fitToWindowAct->setEnabled(true);
+   // updateActions(); wird autiomatisch gemacht?
 
-    if (!fitToWindowAct->isChecked())
-        ui->label->adjustSize();
+  //  if (!fitToWindowAct->isChecked())
+   //     ui->label->adjustSize();
 }
 //[/2]
 
@@ -259,9 +259,9 @@ void Pintor3::normalSize()
 void Pintor3::on_action_Fit_to_Window_triggered()
 
 {
-   bool fitToWindow = on_action_Fit_to_Window_triggered()->isChecked();
-    scrollArea->setWidgetResizable(fitToWindow);
-    if (!fitToWindow)
+  // bool fitToWindow = on_action_Fit_to_Window_triggered();
+    scrollArea->setWidgetResizable(label);
+  //  if (!fitToWindow)
         normalSize();
     updateActions();
 }
@@ -369,8 +369,8 @@ void Pintor3::scaleImage(double factor)
     adjustScrollBar(scrollArea->horizontalScrollBar(), factor);
     adjustScrollBar(scrollArea->verticalScrollBar(), factor);
 
-    zoomInAct->setEnabled(scaleFactor < 3.0);
-    zoomOutAct->setEnabled(scaleFactor > 0.333);
+  //  zoomInAct->setEnabled(scaleFactor < 3.0);
+  //  zoomOutAct->setEnabled(scaleFactor > 0.333);
 }
 //! [24]
 
