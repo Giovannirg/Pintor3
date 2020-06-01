@@ -373,7 +373,10 @@
        </rect>
       </property>
       <property name="text">
-       <string>TextLabel</string>
+       <string/>
+      </property>
+      <property name="scaledContents">
+       <bool>false</bool>
       </property>
      </widget>
     </widget>
@@ -527,5 +530,214 @@
  <resources>
   <include location="Resources.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>AboutQtButton</sender>
+   <signal>clicked()</signal>
+   <receiver>action_About_Qt</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>769</x>
+     <y>67</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>AboutButton</sender>
+   <signal>clicked()</signal>
+   <receiver>action_About_Pintor</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>750</x>
+     <y>47</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ZoomInButton</sender>
+   <signal>clicked()</signal>
+   <receiver>action_Zoom_In</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>460</x>
+     <y>57</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ZoomOutButton</sender>
+   <signal>clicked()</signal>
+   <receiver>action_Zoom_Out</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>510</x>
+     <y>57</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ActualSizeButton</sender>
+   <signal>clicked()</signal>
+   <receiver>action_Actual_Size</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>560</x>
+     <y>57</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>exitButton</sender>
+   <signal>clicked()</signal>
+   <receiver>action_exit</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>50</x>
+     <y>57</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>openButton</sender>
+   <signal>clicked()</signal>
+   <receiver>action_Open</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>110</x>
+     <y>57</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>saveButton</sender>
+   <signal>clicked()</signal>
+   <receiver>action_Save</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>160</x>
+     <y>57</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>copyButton</sender>
+   <signal>clicked()</signal>
+   <receiver>action_Copy</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>280</x>
+     <y>57</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pasteButton</sender>
+   <signal>clicked()</signal>
+   <receiver>action_Paste</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>340</x>
+     <y>57</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cutButton</sender>
+   <signal>clicked()</signal>
+   <receiver>action_Cut</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>400</x>
+     <y>57</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>SaveAsButton</sender>
+   <signal>clicked()</signal>
+   <receiver>action_Save_As</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>210</x>
+     <y>57</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>Fit2WindowButton</sender>
+   <signal>clicked()</signal>
+   <receiver>action_Fit_to_Window</receiver>
+   <slot>trigger()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>610</x>
+     <y>57</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>

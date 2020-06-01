@@ -92,7 +92,7 @@ private:
 
     QImage image;
     QString imageName;
-    QLabel *label; //Related to the TextLabel/mageLabel
+    QLabel *label; //Related to the TextLabel/ImageLabel
     QScrollArea *scrollArea;
     double scaleFactor = 1.0;
 

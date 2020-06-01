@@ -96,18 +96,26 @@ void Pintor3::setImage(const QImage &newImage)
     if (image.colorSpace().isValid())
         image.convertToColorSpace(QColorSpace::SRgb);
     ui->label->setPixmap(QPixmap::fromImage(image));
+  //  QPixmap pixmap = QPixmap::fromImage(image).scaled(image.size()*scaleFactor, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
 
     scaleFactor = 1.0;
 
-    //scrollArea->setVisible(true);
+  //  ui->label->setPixmap(pixmap);
+   // this->scaleImage(scaleFactor);
+
+   // scrollArea->setVisible(true);
     //printAct->setEnabled(true);
    // fitToWindowAct->setEnabled(true);
    // updateActions(); wird autiomatisch gemacht?
 
-  //  if (!fitToWindowAct->isChecked())
-   //     ui->label->adjustSize();
+ //  if (!fitToWindowAct->isChecked())
+      //  ui->label->adjustSize();
 }
 //[/2]
+
+
+
 
 bool Pintor3::saveFile(const QString &fileName)
 {
@@ -234,14 +242,14 @@ void Pintor3::paste()
 void Pintor3::zoomIn()
 
 {
-    scaleImage(1.25);
+  scaleImage(scaleFactor * 1.25);
 }
 //[/11]
 
 //[12] Zoom out
 void Pintor3::zoomOut()
 {
-    scaleImage(0.8);
+    scaleImage(scaleFactor * 0.80);
 }
 //[12]
 
@@ -249,8 +257,11 @@ void Pintor3::zoomOut()
 void Pintor3::normalSize()
 
 {
-    ui->label->adjustSize();
+  //  ui->label->adjustSize();
     scaleFactor = 1.0;
+   // scaleImage(1.0);
+
+
 }
 //[/13]
 
@@ -259,10 +270,15 @@ void Pintor3::on_action_Fit_to_Window_triggered()
 
 {
   // bool fitToWindow = on_action_Fit_to_Window_triggered();
-    scrollArea->setWidgetResizable(label);
+ //   scrollArea->setWidgetResizable(label);
   //  if (!fitToWindow)
-        normalSize();
+       // normalSize();
     //updateActions();
+    double scaleW = static_cast<double>(ui->scrollArea->width()) /image.width();
+    double scaleH = static_cast<double>(ui->scrollArea->height()) /image.height();
+
+    scaleImage(scaleFactor*qMin(scaleH,scaleW)*0.98);
+
 }
 // [/14]
 
@@ -290,22 +306,27 @@ void Pintor3::about()
 
 void Pintor3::scaleImage(double factor)
 {
-    Q_ASSERT(ui->label->pixmap());
+
+    QPixmap pixmap = QPixmap::fromImage(image).scaled(image.size()*scaleFactor, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+   ui->label->setPixmap(pixmap);
+   this->scaleFactor = factor;
+   Q_ASSERT(ui->label->pixmap());
     scaleFactor *= factor;
     ui->label->resize(scaleFactor * ui->label->pixmap()->size());
 
-    adjustScrollBar(scrollArea->horizontalScrollBar(), factor);
-    adjustScrollBar(scrollArea->verticalScrollBar(), factor);
-
+ //   adjustScrollBar(scrollArea->horizontalScrollBar(), factor);
+   // adjustScrollBar(scrollArea->verticalScrollBar(), factor);
+ /*
   //  zoomInAct->setEnabled(scaleFactor < 3.0);
-  //  zoomOutAct->setEnabled(scaleFactor > 0.333);
+  //  zoomOutAct->setEnabled(scaleFactor > 0.333);*/
 }
 
-void Pintor3::adjustScrollBar(QScrollBar *scrollBar, double factor)
+/*void Pintor3::adjustScrollBar(QScrollBar *scrollBar, double factor)
 {
     scrollBar->setValue(int(factor * scrollBar->value()
                             + ((factor - 1) * scrollBar->pageStep()/2)));
-}
+}*/
 
 
 void Pintor3::action_exit()
@@ -355,11 +376,12 @@ void Pintor3::on_action_Save_As_triggered()
 void Pintor3::on_action_Copy_triggered()
 {
 
+    copy();
 }
 
 void Pintor3::on_action_Paste_triggered()
 {
-
+    paste();
 }
 
 void Pintor3::on_action_Cut_triggered()
@@ -369,17 +391,23 @@ void Pintor3::on_action_Cut_triggered()
 
 void Pintor3::on_action_Zoom_In_triggered()
 {
-
+    scaleImage(scaleFactor * 1.25);
 }
 
 void Pintor3::on_action_Zoom_Out_triggered()
 {
+    scaleImage(scaleFactor * 0.80);
+
 
 }
 
 void Pintor3::on_action_Actual_Size_triggered()
 {
+   // ui->label->adjustSize();
+    //scaleFactor = 1.0;
 
+    //normalSize();
+   scaleImage(1.0);
 }
 
 void Pintor3::on_action_About_Pintor_triggered()
