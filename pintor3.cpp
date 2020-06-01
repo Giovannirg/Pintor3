@@ -33,13 +33,13 @@ Pintor3::Pintor3(QWidget *parent)
     , ui(new Ui::Pintor3)
 {
 //[0]
-    textLabel->setBackgroundRole(QPalette::Base);
-    textLabel->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
-    textLabel->setScaledContents(true);
+    ui->label->setBackgroundRole(QPalette::Base);
+    ui->label->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
+    ui->label->setScaledContents(true);
 
-    scrollArea->setBackgroundRole(QPalette::Dark);
-    scrollArea->setWidget(textLabel);
-    scrollArea->setVisible(false);
+    ui->scrollArea->setBackgroundRole(QPalette::Dark);
+    ui->scrollArea->setWidget(ui->label);
+    ui->scrollArea->setVisible(false);
     setCentralWidget(scrollArea);
 
     createActions();
@@ -50,6 +50,11 @@ Pintor3::Pintor3(QWidget *parent)
     ui->setupUi(this);
 }
 
+
+Pintor3::~Pintor3()
+{
+    delete ui;
+}
 //[1] Loads a File
 bool Pintor3::loadFile(const QString &fileName)
 {
@@ -82,7 +87,7 @@ void Pintor3::setImage(const QImage &newImage)
     image = newImage;
     if (image.colorSpace().isValid())
         image.convertToColorSpace(QColorSpace::SRgb);
-    textLabel->setPixmap(QPixmap::fromImage(image));
+    ui->label->setPixmap(QPixmap::fromImage(image));
 //! [4]
     scaleFactor = 1.0;
 
@@ -92,7 +97,7 @@ void Pintor3::setImage(const QImage &newImage)
     updateActions();
 
     if (!fitToWindowAct->isChecked())
-        textLabel->adjustSize();
+        ui->label->adjustSize();
 }
 //[/2]
 
@@ -162,7 +167,7 @@ void Pintor3::saveAs()
 void Pintor3::print()
 
 {
-    Q_ASSERT(imageLabel->pixmap());
+    Q_ASSERT(label->pixmap());
 #if defined(QT_PRINTSUPPORT_LIB) && QT_CONFIG(printdialog)
 //! [6] //! [7]
     QPrintDialog dialog(&printer, this);
@@ -170,11 +175,11 @@ void Pintor3::print()
     if (dialog.exec()) {
         QPainter painter(&printer);
         QRect rect = painter.viewport();
-        QSize size = imageLabel->pixmap()->size();
+        QSize size = label->pixmap()->size();
         size.scale(rect.size(), Qt::KeepAspectRatio);
         painter.setViewport(rect.x(), rect.y(), size.width(), size.height());
-        painter.setWindow(imageLabel->pixmap()->rect());
-        painter.drawPixmap(0, 0, *imageLabel->pixmap());
+        painter.setWindow(label->pixmap()->rect());
+        painter.drawPixmap(0, 0, *label->pixmap());
     }
 #endif
 }
@@ -245,16 +250,16 @@ void Pintor3::zoomOut()
 void Pintor3::normalSize()
 
 {
-    textLabel->adjustSize();
+    ui->label->adjustSize();
     scaleFactor = 1.0;
 }
 //[/13]
 
 //[14] Fit to window
-void Pintor3::fitToWindow()
+void Pintor3::on_action_Fit_to_Window_triggered()
 
 {
-    bool fitToWindow = fitToWindowAct->isChecked();
+   bool fitToWindow = on_action_Fit_to_Window_triggered()->isChecked();
     scrollArea->setWidgetResizable(fitToWindow);
     if (!fitToWindow)
         normalSize();
@@ -284,7 +289,7 @@ void Pintor3::about()
 // [15]
 
 //[16] Menu Actions?? necessary or to control from the UI
-void Pintor3::createActions()
+/* void Pintor3::createActions()
 
 {
     QMenu *fileMenu = menuBar()->addMenu(tr("&File"));
@@ -292,7 +297,7 @@ void Pintor3::createActions()
     QAction *openAct = fileMenu->addAction(tr("&Open..."), this, &Pintor3::open);
     openAct->setShortcut(QKeySequence::Open);
 //Already declared in GUI??
-    saveAsAct = fileMenu->addAction(tr("&Save As..."), this, &Pintor3::saveAs);
+    saveAs = fileMenu->addAction(tr("&Save As..."), this, &Pintor3::saveAs);
     saveAsAct->setEnabled(false);
 
     printAct = fileMenu->addAction(tr("&Print..."), this, &Pintor3::print);
@@ -339,10 +344,10 @@ void Pintor3::createActions()
     helpMenu->addAction(tr("&About"), this, &Pintor3::about);
     helpMenu->addAction(tr("About &Qt"), &QApplication::aboutQt);
 }
-//! [18]
-
-//! [21]
-void Pintor3::updateActions()
+//! [16]
+*/
+// [17]
+/*void Pintor3::updateActions()
 //! [21] //! [22]
 {
     saveAsAct->setEnabled(!image.isNull());
@@ -351,15 +356,15 @@ void Pintor3::updateActions()
     zoomOutAct->setEnabled(!fitToWindowAct->isChecked());
     normalSizeAct->setEnabled(!fitToWindowAct->isChecked());
 }
-//! [22]
-
+//! [17]
+*/
 //! [23]
 void Pintor3::scaleImage(double factor)
 //! [23] //! [24]
 {
-    Q_ASSERT(imageLabel->pixmap());
+    Q_ASSERT(ui->label->pixmap());
     scaleFactor *= factor;
-    imageLabel->resize(scaleFactor * imageLabel->pixmap()->size());
+    ui->label->resize(scaleFactor * ui->label->pixmap()->size());
 
     adjustScrollBar(scrollArea->horizontalScrollBar(), factor);
     adjustScrollBar(scrollArea->verticalScrollBar(), factor);
@@ -378,9 +383,71 @@ void Pintor3::adjustScrollBar(QScrollBar *scrollBar, double factor)
 }
 //! [26]
 
-
-Pintor3::~Pintor3()
+void Pintor3::action_exit()
 {
-    delete ui;
+    QApplication::quit();
 }
 
+
+
+
+
+void Pintor3::on_action_exit_triggered()
+{
+    QApplication::quit();
+}
+
+void Pintor3::on_action_File_triggered()
+{
+
+}
+
+void Pintor3::on_action_Save_triggered()
+{
+
+}
+
+void Pintor3::on_action_Save_As_triggered()
+{
+
+}
+
+void Pintor3::on_action_Copy_triggered()
+{
+
+}
+
+void Pintor3::on_action_Paste_triggered()
+{
+
+}
+
+void Pintor3::on_action_Cut_triggered()
+{
+
+}
+
+void Pintor3::on_action_Zoom_In_triggered()
+{
+
+}
+
+void Pintor3::on_action_Zoom_Out_triggered()
+{
+
+}
+
+void Pintor3::on_action_Actual_Size_triggered()
+{
+
+}
+
+void Pintor3::on_action_About_Pintor_triggered()
+{
+
+}
+
+void Pintor3::on_action_About_Qt_triggered()
+{
+
+}

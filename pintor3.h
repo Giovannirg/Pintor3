@@ -45,7 +45,34 @@ private slots: //[1]for Menu Actions <<taken from Imageviewer>>
     void normalSize();
     void fitToWindow();
     void about();
+    void action_exit();
     //[/1]
+    void on_action_Fit_to_Window_triggered();
+
+    void on_action_exit_triggered();
+
+    void on_action_File_triggered();
+
+    void on_action_Save_triggered();
+
+    void on_action_Save_As_triggered();
+
+    void on_action_Copy_triggered();
+
+    void on_action_Paste_triggered();
+
+    void on_action_Cut_triggered();
+
+    void on_action_Zoom_In_triggered();
+
+    void on_action_Zoom_Out_triggered();
+
+    void on_action_Actual_Size_triggered();
+
+    void on_action_About_Pintor_triggered();
+
+    void on_action_About_Qt_triggered();
+
 private:
     //[2]for Menu Actions <<taken from Imageviewer>>
     void createActions();
@@ -58,7 +85,7 @@ private:
 
 
     QImage image;
-    QLabel *textLabel; //Related to the TextLabel
+    QLabel *label; //Related to the TextLabel/mageLabel
     QScrollArea *scrollArea;
     double scaleFactor = 1;
 
