@@ -43,7 +43,7 @@ private slots: //[1]for Menu Actions <<taken from Imageviewer>>
     void zoomIn();
     void zoomOut();
     void normalSize();
-    void fitToWindow();
+   // void fitToWindow();
     void about();
     void action_exit();
     //[/1]
@@ -75,9 +75,9 @@ private slots: //[1]for Menu Actions <<taken from Imageviewer>>
 
 private:
     //[2]for Menu Actions <<taken from Imageviewer>>
-    void createActions();
+  //  void createActions();
     void createMenus();
-    void updateActions();
+    //void updateActions();
     bool saveFile(const QString &fileName);
     void setImage(const QImage &newImage);
     void scaleImage(double factor);

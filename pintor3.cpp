@@ -42,7 +42,7 @@ Pintor3::Pintor3(QWidget *parent)
     ui->scrollArea->setVisible(false);
     setCentralWidget(scrollArea);
 
-    createActions();
+    //createActions();
 
     resize(QGuiApplication::primaryScreen()->availableSize() * 3 / 5);
 
@@ -263,7 +263,7 @@ void Pintor3::on_action_Fit_to_Window_triggered()
     scrollArea->setWidgetResizable(label);
   //  if (!fitToWindow)
         normalSize();
-    updateActions();
+    //updateActions();
 }
 // [/14]
 
