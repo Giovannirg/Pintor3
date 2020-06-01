@@ -33,18 +33,7 @@ Pintor3::Pintor3(QWidget *parent)
     , ui(new Ui::Pintor3)
 {
 //[0]
-    ui->label->setBackgroundRole(QPalette::Base);
-    ui->label->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
-    ui->label->setScaledContents(true);
-
-    ui->scrollArea->setBackgroundRole(QPalette::Dark);
-    ui->scrollArea->setWidget(ui->label);
-    ui->scrollArea->setVisible(false);
-    setCentralWidget(scrollArea);
-
-    //createActions();
-
-    resize(QGuiApplication::primaryScreen()->availableSize() * 3 / 5);
+        resize(QGuiApplication::primaryScreen()->availableSize() * 3 / 5);
 
 
     ui->setupUi(this);
@@ -144,13 +133,7 @@ static void initializeImageFileDialog(QFileDialog &dialog, QFileDialog::AcceptMo
 
 
 //[5] Opens an image file
-void Pintor3::open()
-{
-    QFileDialog dialog(this, tr("Open File"));
-    initializeImageFileDialog(dialog, QFileDialog::AcceptOpen);
 
-    while (dialog.exec() == QDialog::Accepted && !loadFile(dialog.selectedFiles().first())) {}
-}
 //[/5]
 
 //[6] Saves an image file
@@ -397,10 +380,7 @@ void Pintor3::on_action_exit_triggered()
     QApplication::quit();
 }
 
-void Pintor3::on_action_File_triggered()
-{
 
-}
 
 void Pintor3::on_action_Save_triggered()
 {
@@ -450,4 +430,12 @@ void Pintor3::on_action_About_Pintor_triggered()
 void Pintor3::on_action_About_Qt_triggered()
 {
 
+}
+
+void Pintor3::on_action_Open_triggered()
+{
+   QFileDialog dialog(this, tr("Open File"));
+    initializeImageFileDialog(dialog, QFileDialog::AcceptOpen);
+
+    while (dialog.exec() == QDialog::Accepted && !loadFile(dialog.selectedFiles().first())) {}
 }

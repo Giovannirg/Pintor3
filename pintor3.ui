@@ -392,7 +392,7 @@
     <property name="title">
      <string>&amp;File</string>
     </property>
-    <addaction name="action_File"/>
+    <addaction name="action_Open"/>
     <addaction name="action_Save"/>
     <addaction name="action_Save_As"/>
     <addaction name="separator"/>
@@ -428,7 +428,7 @@
    <addaction name="menu_Help"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="action_File">
+  <action name="action_Open">
    <property name="text">
     <string>&amp;Open</string>
    </property>

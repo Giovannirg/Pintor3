@@ -35,7 +35,7 @@ public:
     bool loadFile(const QString &);//
 
 private slots: //[1]for Menu Actions <<taken from Imageviewer>>
-    void open();
+
     void saveAs();
     void print();
     void copy();
@@ -51,7 +51,7 @@ private slots: //[1]for Menu Actions <<taken from Imageviewer>>
 
     void on_action_exit_triggered();
 
-    void on_action_File_triggered();
+
 
     void on_action_Save_triggered();
 
@@ -72,6 +72,8 @@ private slots: //[1]for Menu Actions <<taken from Imageviewer>>
     void on_action_About_Pintor_triggered();
 
     void on_action_About_Qt_triggered();
+
+    void on_action_Open_triggered();
 
 private:
     //[2]for Menu Actions <<taken from Imageviewer>>
