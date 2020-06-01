@@ -434,7 +434,7 @@ void Pintor3::on_action_About_Qt_triggered()
     normalSizeAct->setEnabled(!fitToWindowAct->isChecked());
 }
 //! [17]
-
+*/
 
 //[4] Initializes the supported image types
 static void initializeImageFileDialog(QFileDialog &dialog, QFileDialog::AcceptMode acceptMode)
@@ -459,4 +459,4 @@ static void initializeImageFileDialog(QFileDialog &dialog, QFileDialog::AcceptMo
         dialog.setDefaultSuffix("jpg");
 }
 //[/4]
-*/
+
