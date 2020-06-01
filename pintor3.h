@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QImage>
 
+#include <QFileInfo>
+
 #if defined(QT_PRINTSUPPORT_LIB)
 #  include <QtPrintSupport/qtprintsupportglobal.h>
 
@@ -86,8 +88,6 @@ private:
     void adjustScrollBar(QScrollBar *scrollBar, double factor);
 
     void setFileName(const QString &fileName);
-
-
     QString getFileName();
 
     QImage image;

@@ -129,6 +129,7 @@ bool Pintor3::saveFile(const QString &fileName)
     }
     const QString message = tr("Wrote \"%1\"").arg(QDir::toNativeSeparators(fileName));
     statusBar()->showMessage(message);
+    QMessageBox::information(this, QGuiApplication::applicationDisplayName(), message);
     return true;
 }
 
@@ -370,7 +371,38 @@ void Pintor3::on_action_Save_triggered()
 
 void Pintor3::on_action_Save_As_triggered()
 {
+    /* Hold the default picture location for the OS.
+     * If empty, then use the last used picture location */
+    const QStringList picturesLocations = QStandardPaths::standardLocations(QStandardPaths::PicturesLocation);
+    QString directory = picturesLocations.isEmpty() ? QDir::currentPath() : picturesLocations.last();
 
+    QFileInfo pictureInfo(imageName);
+    QString pictureSuffix = pictureInfo.completeSuffix();
+    QString pictureSuffixFileBrowserPre = pictureSuffix.prepend("Images (*.");
+    QString pictureSuffixFileBrowserAp = pictureSuffix.append(");;");
+
+    /* The filesystem object representing the saved file */
+    QFile file;
+
+    /* Open a file dialog in the chosen directory and save file name in same format */
+    const QString fileName = QFileDialog::getSaveFileName(this,
+                                                    tr("Save File As"),
+                                                    directory,
+                                                    tr(pictureSuffixFileBrowserAp.toLocal8Bit().data()));
+
+
+    /* If no filename given, then save using original image name */
+    if (fileName.isEmpty())
+    {
+        saveFile(imageName);
+
+    }
+    else
+    {
+        saveFile(fileName);
+    }
+
+    return;
 }
 
 void Pintor3::on_action_Copy_triggered()
