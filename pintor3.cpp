@@ -384,12 +384,26 @@ void Pintor3::on_action_Actual_Size_triggered()
 
 void Pintor3::on_action_About_Pintor_triggered()
 {
+    QMessageBox::about(this, tr("About Image Viewer"),
 
+
+                       tr("<p>The <b>Pintor APP</b> For Modul M3: Ausgewählte Kapitel der Softwareentwicklung example shows how to combine QLabel "
+                                      "and QScrollArea to display an image. QLabel is typically used "
+                                      "for displaying a text, but it can also display an image. "
+                                      "QScrollArea provides a scrolling view around another widget. "
+                                      "If the child widget exceeds the size of the frame, QScrollArea "
+                                      "automatically provides scroll bars. </p><p>The example "
+                                      "demonstrates how QLabel's ability to scale its contents "
+                                      "(QLabel::scaledContents), and QScrollArea's ability to "
+                                      "automatically resize its contents "
+                                      "(QScrollArea::widgetResizable), can be used to implement "
+                                      "zooming and scaling features. </p><p>In addition the example "
+                                      "shows how to use QPainter to print an image.</p>"));
 }
 
 void Pintor3::on_action_About_Qt_triggered()
 {
-
+    QMessageBox::aboutQt(this, tr("About Image Viewer"));
 }
 
 
