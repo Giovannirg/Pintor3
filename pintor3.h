@@ -89,7 +89,7 @@ private:
     QImage image;
     QLabel *label; //Related to the TextLabel/mageLabel
     QScrollArea *scrollArea;
-    double scaleFactor = 1;
+    double scaleFactor = 1.0;
 
 #if defined(QT_PRINTSUPPORT_LIB) && QT_CONFIG(printer)
     QPrinter printer;

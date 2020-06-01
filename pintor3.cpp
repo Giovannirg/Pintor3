@@ -47,8 +47,13 @@ Pintor3::~Pintor3()
 //[1] Loads a File
 bool Pintor3::loadFile(const QString &fileName)
 {
+    /* Define a image reader; second arg omitted, can be used
+     * to find out the image type */
     QImageReader reader(fileName);
+    /* If JPEG is portrait, enables viewer transformations to
+     * portrait mode */
     reader.setAutoTransform(true);
+    /* Read the image from the path and return an image object */
     const QImage newImage = reader.read();
     if (newImage.isNull()) {
         QMessageBox::information(this, QGuiApplication::applicationDisplayName(),
@@ -56,7 +61,6 @@ bool Pintor3::loadFile(const QString &fileName)
                                  .arg(QDir::toNativeSeparators(fileName), reader.errorString()));
         return false;
     }
-
 
     setImage(newImage);
 
@@ -80,7 +84,7 @@ void Pintor3::setImage(const QImage &newImage)
 
     scaleFactor = 1.0;
 
-    scrollArea->setVisible(true);
+    //scrollArea->setVisible(true);
     //printAct->setEnabled(true);
    // fitToWindowAct->setEnabled(true);
    // updateActions(); wird autiomatisch gemacht?
@@ -434,7 +438,7 @@ void Pintor3::on_action_About_Qt_triggered()
 
 void Pintor3::on_action_Open_triggered()
 {
-   QFileDialog dialog(this, tr("Open File"));
+    QFileDialog dialog(this, tr("Open File"));
     initializeImageFileDialog(dialog, QFileDialog::AcceptOpen);
 
     while (dialog.exec() == QDialog::Accepted && !loadFile(dialog.selectedFiles().first())) {}
