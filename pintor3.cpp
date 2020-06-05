@@ -542,5 +542,5 @@ void Pintor3::on_action_About_Qt_triggered()
 
 void Pintor3::on_btnColorEdit_clicked()
 {
-    pintorColorEdit.show();
+    pintorColorEdit.open();
 }
