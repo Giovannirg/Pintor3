@@ -33,8 +33,7 @@ Pintor3::Pintor3(QWidget *parent)
     , ui(new Ui::Pintor3)
 {
 //[0]
-        resize(QGuiApplication::primaryScreen()->availableSize() * 3 / 5);
-
+    resize(QGuiApplication::primaryScreen()->availableSize() * 3 / 5);
 
     ui->setupUi(this);
 }
@@ -540,3 +539,8 @@ void Pintor3::on_action_About_Qt_triggered()
 */
 
 
+
+void Pintor3::on_btnColorEdit_clicked()
+{
+    pintorColorEdit.show();
+}

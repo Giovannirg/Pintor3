@@ -17,10 +17,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     main.cpp \
-    pintor3.cpp
+    pintor3.cpp \
+    pintor_color.cpp
 
 HEADERS += \
-    pintor3.h
+    pintor3.h \
+    pintor_color.h
 
 FORMS += \
     pintor3.ui

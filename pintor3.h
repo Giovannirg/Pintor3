@@ -3,8 +3,8 @@
 
 #include <QMainWindow>
 #include <QImage>
-
 #include <QFileInfo>
+#include "pintor_color.h"
 
 #if defined(QT_PRINTSUPPORT_LIB)
 #  include <QtPrintSupport/qtprintsupportglobal.h>
@@ -77,6 +77,8 @@ private slots: //[1]for Menu Actions <<taken from Imageviewer>>
 
     void on_action_Open_triggered();
 
+    void on_btnColorEdit_clicked();
+
 private:
     //[2]for Menu Actions <<taken from Imageviewer>>
   //  void createActions();
@@ -95,6 +97,9 @@ private:
     QLabel *label; //Related to the TextLabel/ImageLabel
     QScrollArea *scrollArea;
     double scaleFactor = 1.0;
+
+    /* Create RGB/YUV color modal */
+    pintorColor pintorColorEdit;
 
 #if defined(QT_PRINTSUPPORT_LIB) && QT_CONFIG(printer)
     QPrinter printer;
