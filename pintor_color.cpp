@@ -5,6 +5,7 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QLineEdit>
+#include <QRadioButton>
 
 #include "pintor_color.h"
 
@@ -40,18 +41,12 @@ pintorColor::pintorColor(QWidget *parent)
     /* Do not disable access to windows underneath this one */
     this->setModal(false);
 
-    /* ---------------------------------- */
-    colorModels = new QComboBox;
-    colorModels->addItem(tr("RGB"));
-    colorModels->addItem(tr("YUV"));
-
-    QHBoxLayout *colorModelsLayout = new QHBoxLayout;
-    colorModelsLayout->addStretch();
-    colorModelsLayout->addWidget(colorModels);
-    colorModelsLayout->addStretch();
-    /* ---------------------------------- */
-
     /* RGB ---------------------------------- */
+    QRadioButton *buttonRGB = new QRadioButton(tr("RGB"));
+    QHBoxLayout *radioRgbLayout = new QHBoxLayout;
+    radioRgbLayout->addWidget(buttonRGB);
+    radioRgbLayout->addStretch();
+
     QHBoxLayout *redLayout = createColorHBox("R", labelRed, sliderRed, editRed);
     QHBoxLayout *greenLayout = createColorHBox("G", labelGreen, sliderGreen, editGreen);
     QHBoxLayout *blueLayout = createColorHBox("B", labelBlue, sliderBlue, editBlue);
@@ -60,6 +55,22 @@ pintorColor::pintorColor(QWidget *parent)
     rgbLayout->addLayout(redLayout);
     rgbLayout->addLayout(greenLayout);
     rgbLayout->addLayout(blueLayout);
+    /* ---------------------------------- */
+
+    /* YUV ---------------------------------- */
+    QRadioButton *buttonYUV = new QRadioButton(tr("YUV"));
+    QHBoxLayout *radioYuvLayout = new QHBoxLayout;
+    radioYuvLayout->addWidget(buttonYUV);
+    radioRgbLayout->addStretch();
+
+    QHBoxLayout *lumaLayout = createColorHBox("Y", labelLuma, sliderLuma, editLuma);
+    QHBoxLayout *chromaBlueLayout = createColorHBox("U", labelBlueProjection, sliderBlueProjection, editBlueProjection);
+    QHBoxLayout *chromaRedLayout = createColorHBox("V", labelRedProjection, sliderRedProjection, editRedProjection);
+
+    QVBoxLayout *yuvLayout = new QVBoxLayout;
+    yuvLayout->addLayout(lumaLayout);
+    yuvLayout->addLayout(chromaBlueLayout);
+    yuvLayout->addLayout(chromaRedLayout);
     /* ---------------------------------- */
 
     /* ---------------------------------- */
@@ -77,8 +88,10 @@ pintorColor::pintorColor(QWidget *parent)
 
     /* ---------------------------------- */
     QVBoxLayout *mainLayout = new QVBoxLayout;
-    mainLayout->addLayout(colorModelsLayout);
+    mainLayout->addLayout(radioRgbLayout);
     mainLayout->addLayout(rgbLayout);
+    mainLayout->addLayout(radioYuvLayout);
+    mainLayout->addLayout(yuvLayout);
     mainLayout->addLayout(buttonLayout);
     setLayout(mainLayout);
     /* ---------------------------------- */

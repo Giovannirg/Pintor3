@@ -13,6 +13,7 @@ class QComboBox;
 class QLabel;
 class QLineEdit;
 class QHBoxLayout;
+class QRadioButton;
 
 class pintorColor : public QDialog
 {
@@ -43,6 +44,9 @@ private:
     QPushButton *buttonClose;
     QPushButton *buttonApply;
     QPushButton *buttonPreview;
+
+    QRadioButton *buttonRGB;
+    QRadioButton *buttonYUV;
     /* ---------------------------------- */
 
     /* ---------------------------------- */
@@ -75,9 +79,6 @@ private:
     QLineEdit *editRedProjection;
     /* ---------------------------------- */
 
-    /* ---------------------------------- */
-    QComboBox *colorModels;
-    /* ---------------------------------- */
 
 
 };
