@@ -36,6 +36,8 @@ public:
     ~Pintor3();
     bool loadFile(const QString &);//
 
+    virtual void resizeEvent(QResizeEvent *event) {on_action_Fit_to_Window_triggered();}
+
 private slots: //[1]for Menu Actions <<taken from Imageviewer>>
 
     void saveAs();
@@ -45,7 +47,8 @@ private slots: //[1]for Menu Actions <<taken from Imageviewer>>
     void zoomIn();
     void zoomOut();
     void normalSize();
-   // void fitToWindow();
+    void setScale(double scaleFactor);
+    void fit2Window();
     void about();
     void action_exit();
     //[/1]

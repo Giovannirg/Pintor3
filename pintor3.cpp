@@ -96,23 +96,13 @@ void Pintor3::setImage(const QImage &newImage)
     if (image.colorSpace().isValid())
         image.convertToColorSpace(QColorSpace::SRgb);
     ui->label->setPixmap(QPixmap::fromImage(image));
-  //  QPixmap pixmap = QPixmap::fromImage(image).scaled(image.size()*scaleFactor, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    setScale(1.0);
 
-
-    scaleFactor = 1.0;
-
-  //  ui->label->setPixmap(pixmap);
-   // this->scaleImage(scaleFactor);
-
-   // scrollArea->setVisible(true);
-    //printAct->setEnabled(true);
-   // fitToWindowAct->setEnabled(true);
-   // updateActions(); wird autiomatisch gemacht?
-
- //  if (!fitToWindowAct->isChecked())
-      //  ui->label->adjustSize();
 }
 //[/2]
+
+
+
 
 
 
@@ -239,18 +229,65 @@ void Pintor3::paste()
 
 //[/10]
 
+
+
+void Pintor3::setScale(double scaleFactor)
+{
+
+QPixmap pixmap = QPixmap::fromImage(image).scaled(image.size()*scaleFactor, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+
+  //scaleFactor = 1.0;
+
+  ui->label->setPixmap(pixmap);
+
+  this->scaleFactor = scaleFactor;
+
+// scrollArea->setVisible(true);
+//printAct->setEnabled(true);
+// fitToWindowAct->setEnabled(true);
+// updateActions(); wird autiomatisch gemacht?
+
+//  if (!fitToWindowAct->isChecked())
+  //  ui->label->adjustSize();
+
+}
+
+void Pintor3::fit2Window()
+{
+    // bool fitToWindow = on_action_Fit_to_Window_triggered();
+   //   scrollArea->setWidgetResizable(label);
+    //  if (!fitToWindow)
+         // normalSize();
+      //updateActions();
+    //  double scaleW = static_cast<double>(ui->scrollArea->width()) /image.width();
+      // double scaleH = static_cast<double>(ui->scrollArea->height()) /image.height();
+
+      // scaleImage(scaleFactor*qMin(scaleH,scaleW)*0.98);
+    ui->label->setScaledContents(true);
+   // scaleImage(scaleFactor);
+    setScale (1.0);
+    ui->label->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
+
+
+}
+
+
+
+
+
 //[11] Zoom In
 void Pintor3::zoomIn()
 
 {
-  scaleImage(scaleFactor * 1.25);
+  setScale(scaleFactor * 1.25);
 }
 //[/11]
 
 //[12] Zoom out
 void Pintor3::zoomOut()
 {
-    scaleImage(scaleFactor * 0.80);
+    setScale(scaleFactor * 0.80);
 }
 //[12]
 
@@ -259,8 +296,8 @@ void Pintor3::normalSize()
 
 {
   //  ui->label->adjustSize();
-    scaleFactor = 1.0;
-   // scaleImage(1.0);
+  //  scaleFactor = 1.0;
+   scaleImage(1.0);
 
 
 }
@@ -270,15 +307,8 @@ void Pintor3::normalSize()
 void Pintor3::on_action_Fit_to_Window_triggered()
 
 {
-  // bool fitToWindow = on_action_Fit_to_Window_triggered();
- //   scrollArea->setWidgetResizable(label);
-  //  if (!fitToWindow)
-       // normalSize();
-    //updateActions();
-    double scaleW = static_cast<double>(ui->scrollArea->width()) /image.width();
-    double scaleH = static_cast<double>(ui->scrollArea->height()) /image.height();
 
-    scaleImage(scaleFactor*qMin(scaleH,scaleW)*0.98);
+    fit2Window();
 
 }
 // [/14]
@@ -316,8 +346,8 @@ void Pintor3::scaleImage(double factor)
     scaleFactor *= factor;
     ui->label->resize(scaleFactor * ui->label->pixmap()->size());
 
- //   adjustScrollBar(scrollArea->horizontalScrollBar(), factor);
-   // adjustScrollBar(scrollArea->verticalScrollBar(), factor);
+ // adjustScrollBar(scrollArea->horizontalScrollBar(), factor);
+ // adjustScrollBar(scrollArea->verticalScrollBar(), factor);
  /*
   //  zoomInAct->setEnabled(scaleFactor < 3.0);
   //  zoomOutAct->setEnabled(scaleFactor > 0.333);*/
@@ -438,8 +468,8 @@ void Pintor3::on_action_Actual_Size_triggered()
    // ui->label->adjustSize();
     //scaleFactor = 1.0;
 
-    //normalSize();
-   scaleImage(1.0);
+    normalSize();
+  // scaleImage(1.0);
 }
 
 void Pintor3::on_action_About_Pintor_triggered()
