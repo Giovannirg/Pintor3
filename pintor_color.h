@@ -25,6 +25,7 @@ signals:
 
 /* Expands into a construct that the C++ compiler can digest. (Same as signals) */
 private slots:
+    void on_buttonRGB_toggled(bool checked);
 
 
 public:

@@ -6,6 +6,7 @@
 #include <QLabel>
 #include <QLineEdit>
 #include <QRadioButton>
+#include <QAbstractButton>
 
 #include "pintor_color.h"
 
@@ -14,6 +15,20 @@
 #define PIXEL_VAL_MAX   255U
 
 
+void pintorColor::on_buttonRGB_toggled(bool checked)
+{
+    if(true == checked)
+    {
+        /* If true is checked, deactivate all other sliders
+         * and buttons, etc.. */
+    }
+    else
+    {
+
+    }
+
+    return;
+}
 
 QHBoxLayout* pintorColor::createColorHBox(QString name, QLabel *p_label, QSlider *p_slider, QLineEdit *p_lineEdit)
 {
@@ -43,6 +58,7 @@ pintorColor::pintorColor(QWidget *parent)
 
     /* RGB ---------------------------------- */
     QRadioButton *buttonRGB = new QRadioButton(tr("RGB"));
+    buttonRGB->setChecked(true);
     QHBoxLayout *radioRgbLayout = new QHBoxLayout;
     radioRgbLayout->addWidget(buttonRGB);
     radioRgbLayout->addStretch();
@@ -59,6 +75,7 @@ pintorColor::pintorColor(QWidget *parent)
 
     /* YUV ---------------------------------- */
     QRadioButton *buttonYUV = new QRadioButton(tr("YUV"));
+    buttonYUV->setChecked(false);
     QHBoxLayout *radioYuvLayout = new QHBoxLayout;
     radioYuvLayout->addWidget(buttonYUV);
     radioRgbLayout->addStretch();
@@ -71,6 +88,10 @@ pintorColor::pintorColor(QWidget *parent)
     yuvLayout->addLayout(lumaLayout);
     yuvLayout->addLayout(chromaBlueLayout);
     yuvLayout->addLayout(chromaRedLayout);
+
+    /* Breaks the program. Has to do with passing it
+     * to the createColorHBox function */
+    //sliderRedProjection->setRange(0, 100);
     /* ---------------------------------- */
 
     /* ---------------------------------- */
@@ -95,5 +116,9 @@ pintorColor::pintorColor(QWidget *parent)
     mainLayout->addLayout(buttonLayout);
     setLayout(mainLayout);
     /* ---------------------------------- */
+
+
+    /* Connect signals */
+    connect(buttonRGB, SIGNAL(toggled(const bool &)), this, SLOT(on_buttonRGB_toggled(const bool &)));
 
 }
